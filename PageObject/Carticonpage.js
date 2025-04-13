@@ -2,14 +2,6 @@ class Carticonpage
 {
 
 
-  // await page.getByRole('link', { name: 'Contracts & Services' }).click();
-  // await page.locator('div:nth-child(3) > .sc-ftvSup').click();
-  // await page.getByRole('link', { name: 'Offers' }).click();
-  // await page.getByRole('link', { name: 'Sourcing hub' }).click();
-  // await page.getByRole('link', { name: 'Purchase goals' }).click();
-  // await page.getByRole('link', { name: 'Purchases (Recycling)' }).click();
-  // await page.getByRole('link', { name: 'Purchases (Trading)' }).click();
-
 constructor(page)
 {
 this.page = page
