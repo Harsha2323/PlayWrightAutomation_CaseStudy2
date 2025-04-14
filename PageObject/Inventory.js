@@ -1,4 +1,4 @@
-class Invebtory
+class Inventory
 
 {
 
@@ -38,4 +38,4 @@ async navigatetoStock()
 
 }
 
-module.exports = {Invebtory}
+module.exports = {Inventory}

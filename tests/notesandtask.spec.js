@@ -1,15 +1,15 @@
 const {test, expect}=require('@playwright/test')
-const {login} = require('../PageObject/login')
-const {Notesandtask} = require('../PageObject/Notesandtask')
+const {PoManager} = require('../PageObject/PoManager')
 const data =JSON.parse(JSON.stringify(require('../testdata/Testdata.json')))
 
 
 
 test('Verify that user is able to land on the Notes page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const notesandtaske = new Notesandtask(page)
+  const notesandtaske = pomanager.getNotesandtaskpage()
   await notesandtaske.notesandtasksicons()
   await notesandtaske.navigatetonotes()
   // assertion by validating the page name
@@ -21,10 +21,11 @@ test('Verify that user is able to land on the Notes page', async ({page}) => {
 
 
 test('Verify that user is able to land on the tasks page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const notesandtaske = new Notesandtask(page)
+  const notesandtaske = pomanager.getNotesandtaskpage()
   await notesandtaske.notesandtasksicons()
   await notesandtaske.navigatetotasks()
   // assertion by validating the page name

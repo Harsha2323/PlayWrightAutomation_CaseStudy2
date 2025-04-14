@@ -1,15 +1,15 @@
 const {test, expect}=require('@playwright/test')
-const {login} = require('../PageObject/login')
-const {Tagiconpage} = require('../PageObject/Tagiconpage')
+const {PoManager} = require('../PageObject/PoManager')
 const data =JSON.parse(JSON.stringify(require('../testdata/Testdata.json')))
 
 
 
 test('Verify that user is able to land on sales page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const tagiconpagee = new Tagiconpage(page)
+  const tagiconpagee = pomanager.gettagpage()
   await tagiconpagee.Tagicon()
   await tagiconpagee.navigatetoSales()
   // assertion by validating the page name

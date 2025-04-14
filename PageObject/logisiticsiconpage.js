@@ -14,7 +14,7 @@ this.shipmenttracking = page.getByRole('link', { name: 'Shipment tracking' })
 
 }
 
-async logisiticsiconpage() 
+async logisiticsiconpagee() 
   {
     await this.logisiticsicon.click()
   }

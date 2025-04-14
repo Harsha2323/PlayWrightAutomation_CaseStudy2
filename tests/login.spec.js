@@ -1,11 +1,13 @@
 const {test, expect}=require('@playwright/test')
-const {login} = require('../PageObject/login')
+const {PoManager} = require('../PageObject/PoManager')
 const data =JSON.parse(JSON.stringify(require('../testdata/Testdata.json')))
 
 
 
 test('Verify User is able to navigate to the url', async ({page}) => {
-  const loginpage =new login(page)
+
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   const currentUrl = page.url();
   //Assertion to confirm the URL
@@ -16,7 +18,8 @@ test('Verify User is able to navigate to the url', async ({page}) => {
 
 
 test('Verify User is able to login to the application', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
   //Assertion for login (checking profile icon visible only when user login)
@@ -27,7 +30,8 @@ test('Verify User is able to login to the application', async ({page}) => {
 
 
 test('Verify User is able to logout from the application', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
   await loginpage.logout()

@@ -1,15 +1,15 @@
 const {test, expect}=require('@playwright/test')
-const {login} = require('../PageObject/login')
-const {Riskiconpage} = require('../PageObject/Riskiconpage')
+const {PoManager} = require('../PageObject/PoManager')
 const data =JSON.parse(JSON.stringify(require('../testdata/Testdata.json')))
 
 
 
 test('Verify that user is able to land on the Hedging contracts page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const riskiconpagee = new Riskiconpage(page)
+  const riskiconpagee = pomanager.getRiskipage()
   await riskiconpagee.riskicon()
   await riskiconpagee.navigatetoHedgingcontracts()
   // assertion by validating the page name
@@ -21,10 +21,11 @@ test('Verify that user is able to land on the Hedging contracts page', async ({p
 
 
 test('Verify that user is able to land on the position page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const riskiconpagee = new Riskiconpage(page)
+  const riskiconpagee = pomanager.getRiskipage()
   await riskiconpagee.riskicon()
   await riskiconpagee.navigatetoposition()
   // assertion by validating the page name

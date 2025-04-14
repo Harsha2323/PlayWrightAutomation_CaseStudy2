@@ -1,17 +1,17 @@
 const {test, expect}=require('@playwright/test')
-const {login} = require('../PageObject/login')
-const {Invebtory} = require('../PageObject/Inventory')
+const {PoManager} = require('../PageObject/PoManager')
 const data =JSON.parse(JSON.stringify(require('../testdata/Testdata.json')))
 
 
 
 test('Verify that user is able to land on the stock page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const invebtorypagee = new Invebtory(page)
-  await invebtorypagee.invebtoryiconpage()
-  await invebtorypagee.navigatetoStock()
+  const inventorypagee = pomanager.getinventorypage()
+  await inventorypagee.invebtoryiconpage()
+  await inventorypagee.navigatetoStock()
   // assertion by validating the page name
   await expect(page.getByText('Stocks')).toContainText('Stocks')
   await page.waitForLoadState();
@@ -19,12 +19,13 @@ test('Verify that user is able to land on the stock page', async ({page}) => {
 })
 
 test('Verify that user is able to land on the inbond load page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const invebtorypagee = new Invebtory(page)
-  await invebtorypagee.invebtoryiconpage()
-  await invebtorypagee.navigatetoinbondload()
+  const inventorypagee = pomanager.getinventorypage()
+  await inventorypagee.invebtoryiconpage()
+  await inventorypagee.navigatetoinbondload()
     // assertion by validating the page name
   await expect(page.getByText('Inbound loads')).toContainText('Inbound loads')
   await page.waitForLoadState();
@@ -32,12 +33,13 @@ test('Verify that user is able to land on the inbond load page', async ({page}) 
 })
 
 test('Verify that user is able to land on the outbond load page', async ({page}) => {
-  const loginpage =new login(page)
+  const pomanager =new PoManager(page)
+  const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
-  const invebtorypagee = new Invebtory(page)
-  await invebtorypagee.invebtoryiconpage()
-  await invebtorypagee.navigatetooutbondload()
+  const inventorypagee = pomanager.getinventorypage()
+  await inventorypagee.invebtoryiconpage()
+  await inventorypagee.navigatetooutbondload()
     // assertion by validating the page name
   await expect(page.getByText('Outbound loads').first()).toContainText('Outbound loads')
   await page.waitForLoadState();
