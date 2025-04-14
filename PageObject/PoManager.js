@@ -8,6 +8,8 @@ const {Notesandtask} = require('../PageObject/Notesandtask')
 const {Riskiconpage} = require('../PageObject/Riskiconpage')
 const {Tagiconpage} = require('../PageObject/Tagiconpage')
 const {Invoiceandpayable} = require('../PageObject/Invoiceandpayable')
+const {Reports} = require('../PageObject/Reports')
+const {Adminpanel} = require('../PageObject/Adminpanel')
 
 class PoManager
 {
@@ -25,7 +27,8 @@ class PoManager
          this.RiskiconPage = new Riskiconpage(this.page)
          this.tagiconpage = new Tagiconpage(this.page)
          this.Invoiceandpayablepage = new Invoiceandpayable(this.page)
-    
+         this.reportpage = new Reports(this.page)
+         this.adminpanelpage = new Adminpanel(this.page)
     
     
     }
@@ -77,6 +80,16 @@ class PoManager
     getInvoiceandpayablepage()
     {
         return this.Invoiceandpayablepage 
+    }
+
+    getreportspage()
+    {
+        return this.reportpage 
+    }
+
+    getadminpanelpagepage()
+    {
+        return this.adminpanelpage 
     }
 
 }
