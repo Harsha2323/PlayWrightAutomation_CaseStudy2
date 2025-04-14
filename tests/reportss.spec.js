@@ -2,13 +2,20 @@ const {test, expect}=require('@playwright/test')
 const {PoManager} = require('../PageObject/PoManager')
 const data =JSON.parse(JSON.stringify(require('../testdata/Testdata.json')))
 
+async function applyZoomOut(page) {
+  await page.addStyleTag({
+    content: `body { transform: scale(0.8); transform-origin: top left; }`
+  });
+}
 
 
 test('Verify that user is able to land on Dashboard page', async ({page}) => {
+
   const pomanager =new PoManager(page)
   const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
+  await applyZoomOut(page);
   const reportpagee = pomanager.getreportspage()
   await reportpagee.reportsicons()
   await reportpagee.navigatetodashboard()
@@ -19,10 +26,12 @@ test('Verify that user is able to land on Dashboard page', async ({page}) => {
 })
 
 test('Verify that user is able to land on the reportlist page', async ({page}) => {
+
   const pomanager =new PoManager(page)
   const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
+  await applyZoomOut(page);
   const reportpagee = pomanager.getreportspage()
   await reportpagee.reportsicons()
   await reportpagee.navigatetoreportlist()
@@ -33,10 +42,12 @@ test('Verify that user is able to land on the reportlist page', async ({page}) =
 })
 
 test('Verify that user is able to land on the price list dashboard page', async ({page}) => {
+
   const pomanager =new PoManager(page)
   const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
   await loginpage.logincred(data.username , data.password)
+  await applyZoomOut(page);
   const reportpagee = pomanager.getreportspage()
   await reportpagee.reportsicons()
   await reportpagee.navigatetopricelistdashboard()
@@ -48,10 +59,12 @@ test('Verify that user is able to land on the price list dashboard page', async 
 
 
 test('Verify that user is able to land on the Exceptional costs page', async ({page}) => {
+
     const pomanager =new PoManager(page)
     const loginpage = pomanager.getloginpage()
     await loginpage.pageurl()
     await loginpage.logincred(data.username , data.password)
+    await applyZoomOut(page);
     const reportpagee = pomanager.getreportspage()
     await reportpagee.reportsicons()
     await reportpagee.navigatetoExceptionalcosts()
