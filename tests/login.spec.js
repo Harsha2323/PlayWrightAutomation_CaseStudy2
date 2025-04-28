@@ -17,7 +17,7 @@ test('Verify User is able to navigate to the url', async ({page}) => {
 });
 
 
-test.only('Verify User is able to login to the application', async ({page}) => {
+test('Verify User is able to login to the application', async ({page}) => {
   const pomanager =new PoManager(page)
   const loginpage = pomanager.getloginpage()
   await loginpage.pageurl()
