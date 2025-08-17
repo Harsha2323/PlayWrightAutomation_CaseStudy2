@@ -12,7 +12,7 @@ test('Verify that user is able to land on the Purchase & Opportunity list page',
   const carticonpagee = pomanager.getcartpage()
   await carticonpagee.Carticon()
   await carticonpagee.navigatetoPurchase1()
-  await page.waitForTimeout(4000)
+  await page.waitForTimeout(5000)
   // assertion by validating the page name
   await expect(page.getByText('Purchase & Opportunity list')).toContainText('Purchase & Opportunity list')
   await page.waitForLoadState();
